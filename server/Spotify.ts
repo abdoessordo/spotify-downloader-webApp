@@ -1,8 +1,7 @@
 /**
  * Class: Spotify
  *
- * Description: This class is used to interact with the Spotify API and create an abstraction layer between the
- * API and the application.
+ * Description: This class is used to interact with the Spotify API and create an abstraction layer between the API and the application.
  *
  * Attributes:
  * @param _accessToken {string} The token used to interact with the API.
