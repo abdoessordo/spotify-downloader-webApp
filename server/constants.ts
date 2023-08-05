@@ -35,6 +35,25 @@ export const ACCESS_TOKEN_URL: string =
   "https://accounts.spotify.com/api/token";
 
 /**
+ * * PLAYLISTS_URL
+ *
+ * Description: This constant represents the url used to get the playlists from the Spotify API.
+ * @type {string}
+ * @default "https://api.spotify.com/v1/browse/featured-playlists"
+ */
+export const PLAYLISTS_URL: string =
+  "https://api.spotify.com/v1/browse/featured-playlists";
+
+/**
+ * * ARTISTS_URL
+ *
+ * Description: This constant represents the url used to get the artists from the Spotify API.
+ * @type {string}
+ * @default "https://api.spotify.com/v1/artists"
+ */
+export const ARTISTS_URL: string = "https://api.spotify.com/v1/artists";
+
+/**
  * * GRANT_TYPE
  * Description: This constant represents the grant type used to get the access token from the Spotify API.
  * @type {enum}

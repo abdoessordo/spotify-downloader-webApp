@@ -1,28 +1,27 @@
 /**
- * * Class: Spotify
+ * Class: Spotify
  *
  * Description: This class is used to interact with the Spotify API and create an abstraction layer between the
- *   API and the application.
+ * API and the application.
  *
  * Attributes:
- *   @param _accessToken @type {string} The token used to interact with the API.
- *   @param _client_id @type {string} The client id of the application, obtained from the Spotify API.
- *   @param _client_secret  @type {string} The client secret of the application, obtained from
- *   the Spotify API.
+ * @param _accessToken {string} The token used to interact with the API.
+ * @param _client_id {string} The client id of the application, obtained from the Spotify API.
+ * @param _client_secret {string} The client secret of the application, obtained from the Spotify API.
  *
  * Methods:
- *   - getToken(): void - Gets the token from the Spotify API, using the client id and the client secret.
- *   - refreshToken(): void - Refreshes the token after it expires, using the client id and the
- *   client secret.
- *   - getPlaylist(playlist_id: string): void - Gets a single playlist from the Spotify API using
- *   the playlist id.
- *   - getInstance(client_id: string, client_secret: string): Spotify - Implements the singleton
- *   pattern to get a single instance of the class Spotify.
+ * - getToken(): Promise<AccessTokenResponse> - Gets the token from the Spotify API, using the client id and the client secret.
+ * - refreshToken(): void - Refreshes the token after it expires, using the client id and the client secret.
+ * - getPlaylist(playlist_id: string): void - Gets a single playlist from the Spotify API using the playlist id.
+ * - getArtistData(artist_id: string): Promise<any> - Gets the data of a single artist from the Spotify API using the artist id.
+ * - getInstance(client_id: string, client_secret: string): Spotify - Implements the singleton pattern to get a single instance of the class Spotify.
  *
  * Author: Essordo Abdellah
+ *
+ * Date: 05/08/2023 (dd/mm/yyyy)
  */
 
-import { ACCESS_TOKEN_URL, GRANT_TYPE } from "./constants";
+import { ACCESS_TOKEN_URL, ARTISTS_URL, GRANT_TYPE } from "./constants";
 import { AccessTokenResponse } from "./interfaces/AccessTokenResponse";
 
 class Spotify {
@@ -72,6 +71,38 @@ class Spotify {
 
   public set accessToken(value: string) {
     this._accessToken = value;
+  }
+
+  /**
+   * * Function: sendHttpRequestWithBearerToken
+   * Utility function to send HTTP requests with Bearer authentication
+   * @param url The URL to send the request to.
+   * @param options The request options. @default {}
+   * @returns The response from the HTTP request.
+   */
+  private async sendHttpRequestWithBearerToken(
+    url: string,
+    options: RequestInit = {}
+  ): Promise<Response> {
+    // Set the "Authorization" header with Bearer token
+    const headers = {
+      ...options.headers,
+      Authorization: `Bearer ${this._accessToken}`,
+    };
+
+    // Merge the updated headers with the other options
+    const updatedOptions: RequestInit = {
+      ...options,
+      headers,
+    };
+
+    try {
+      const response = await fetch(url, updatedOptions);
+      return response;
+    } catch (error) {
+      // Handle any errors that might occur during the fetch request
+      throw error;
+    }
   }
 
   /**
@@ -164,6 +195,34 @@ class Spotify {
    */
   private getPlaylist(playlist_id: string): void {
     // TODO: Implement the method
+  }
+
+  /**
+   * * Function: getArtistData
+   * Description: Gets the data of a single artist from the Spotify API using the artist id.
+   * @param artist_id @type {string}  The id of the artist.
+   * ! Not implemented yet. It will make an API request to get the artist details.
+   */
+  public async getArtistData(artist_id: string): Promise<any> {
+    // TODO: Implement the method
+    const url = `${ARTISTS_URL}/${artist_id}`;
+    const options: RequestInit = {
+      method: "GET",
+    };
+
+    try {
+      const response = await this.sendHttpRequestWithBearerToken(url, options);
+      if (!response.ok) {
+        throw new Error(
+          `Error fetching artist data: ${response.status} ${response.statusText}`
+        );
+      }
+      const artistData = await response.json();
+      return artistData;
+    } catch (error) {
+      console.error("Error in getArtistData:", error);
+      throw error;
+    }
   }
 
   /**

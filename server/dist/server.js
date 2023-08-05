@@ -16,11 +16,11 @@ const client_id = process.env.CLIENT_ID
 const client_secret = process.env.CLIENT_SECRET
     ? process.env.CLIENT_SECRET
     : "CLIENT_SECRET_NOT_FOUND";
-const spotify1 = Spotify_1.default.getInstance(client_id, client_secret);
-const spotify2 = Spotify_1.default.getInstance(client_id, client_secret);
+const spotifyClient = Spotify_1.default.getInstance(client_id, client_secret);
 app.get("/", (req, res) => {
-    // test the singleton pattern
-    res.send(`Access token 1: ${spotify1.accessToken} <br> Access token 2: ${spotify2.accessToken}`);
+    spotifyClient.getArtistData("4Z8W4fKeB5YxbusRsdQVPb").then((data) => {
+        res.send(data);
+    });
 });
 app.listen(constants_1.PORT, () => {
     console.log(`Server is listening on port ${constants_1.PORT}`);

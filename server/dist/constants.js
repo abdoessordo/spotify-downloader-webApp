@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GRANT_TYPE = exports.ACCESS_TOKEN_URL = exports.PORT = void 0;
+exports.GRANT_TYPE = exports.ARTISTS_URL = exports.PLAYLISTS_URL = exports.ACCESS_TOKEN_URL = exports.PORT = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 /**
@@ -35,6 +35,22 @@ exports.PORT = process.env.PORT
  * @default "https://accounts.spotify.com/api/token"
  */
 exports.ACCESS_TOKEN_URL = "https://accounts.spotify.com/api/token";
+/**
+ * * PLAYLISTS_URL
+ *
+ * Description: This constant represents the url used to get the playlists from the Spotify API.
+ * @type {string}
+ * @default "https://api.spotify.com/v1/browse/featured-playlists"
+ */
+exports.PLAYLISTS_URL = "https://api.spotify.com/v1/browse/featured-playlists";
+/**
+ * * ARTISTS_URL
+ *
+ * Description: This constant represents the url used to get the artists from the Spotify API.
+ * @type {string}
+ * @default "https://api.spotify.com/v1/artists"
+ */
+exports.ARTISTS_URL = "https://api.spotify.com/v1/artists";
 /**
  * * GRANT_TYPE
  * Description: This constant represents the grant type used to get the access token from the Spotify API.
