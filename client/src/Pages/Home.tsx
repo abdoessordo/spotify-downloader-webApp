@@ -87,7 +87,7 @@ export default function Home() {
     } else {
       setIsLogged(false);
     }
-  }, []);
+  }, [userData]);
 
   useEffect(() => {
     const access_token = getAccessToken();
