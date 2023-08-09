@@ -1,31 +1,49 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home";
+import Playlist from "./Pages/Playlist";
 
-const Layout = () => (
-  <div className=" min-h-screen min-w-screen bg-gray-100">
-    <Outlet />
-  </div>
-);
+import { ThemeProvider } from "./components/theme-provider";
 
-const BrowserRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/about",
-        element: <h1>About</h1>,
-      },
-    ],
-  },
-]);
+export interface Tokens {
+  access_token: string;
+  refresh_token: string;
+  expires_in: number;
+  time_stamp: number;
+}
 
 function App() {
-  return <RouterProvider router={BrowserRouter} />;
+  const Layout = () => (
+    <div className=" min-h-scree">
+      <Outlet />
+    </div>
+  );
+
+  const BrowserRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/playlist",
+          element: <Playlist />,
+        },
+        {
+          path: "/callback",
+          element: <h1>Callback</h1>,
+        },
+      ],
+    },
+  ]);
+
+  return (
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={BrowserRouter} />
+    </ThemeProvider>
+  );
 }
 
 export default App;

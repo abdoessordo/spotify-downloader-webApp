@@ -226,9 +226,9 @@ class Spotify {
 
   /**
    * * Function: getInstance
-   * Description: Implements the singleton pattern to get a single instance of the class Spotify.
-   * @param client_id @type {string}  The client id of the application, obtained from the Spotify API.
-   * @param client_secret @type {string}  The client secret of the application, obtained from the Spotify API.
+   * @description: Implements the singleton pattern to get a single instance of the class Spotify.
+   * @param client_id  [string]  The client id of the application, obtained from the Spotify API.
+   * @param client_secret  [string]  The client secret of the application, obtained from the Spotify API.
    * @returns Spotify
    * ! This method ensures that only one instance of Spotify class exists throughout the application.
    */
@@ -241,3 +241,5 @@ class Spotify {
 }
 
 export default Spotify;
+
+const spotify = Spotify.getInstance("", "");

@@ -25,6 +25,29 @@ export const PORT: number = process.env.PORT
   : 3000;
 
 /**
+ * * CLIENT_ID
+ * Description: This constant represents the client id used to get the access token from the Spotify API.
+ * @type {string}
+ * @default ""
+ */
+export const CLIENT_ID: string = process.env.CLIENT_ID || "";
+
+/**
+ * * CLIENT_SECRET
+ * Description: This constant represents the client secret used to get the access token from the Spotify API.
+ * @type {string}
+ * @default ""
+ */
+export const CLIENT_SECRET: string = process.env.CLIENT_SECRET || "";
+
+/**
+ * * REDIRECT_URI
+ * Description: This constant represents the redirect uri used to get the access token from the Spotify API.
+ * @type {string}
+ */
+export const REDIRECT_URI: string = process.env.REDIRECT_URI || "";
+
+/**
  * * ACCESS_TOKEN_URL
  *
  * Description: This constant represents the url used to get the access token from the Spotify API.
