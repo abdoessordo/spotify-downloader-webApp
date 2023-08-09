@@ -8,6 +8,7 @@ const constants_1 = require("./constants");
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const axios_1 = __importDefault(require("axios"));
+// const clientBaseUrl: string = "http://localhost:5173";
 const clientBaseUrl = "http://localhost:5173";
 // import Spotify from "./Spotify";
 const app = (0, express_1.default)();
@@ -43,7 +44,7 @@ app.get("/login", (req, res) => {
 });
 app.get("/callback", (req, res) => {
     const code = req.query.code || "";
-    const state = req.query.state || "asd";
+    const state = req.query.state || "";
     (0, axios_1.default)({
         method: "post",
         url: "https://accounts.spotify.com/api/token",

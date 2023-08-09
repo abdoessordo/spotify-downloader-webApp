@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import axios from "axios";
 
+// const clientBaseUrl: string = "http://localhost:5173";
 const clientBaseUrl: string = "http://localhost:5173";
 
 // import Spotify from "./Spotify";
@@ -51,7 +52,7 @@ app.get("/login", (req, res) => {
 
 app.get("/callback", (req, res) => {
   const code = req.query.code || "";
-  const state = req.query.state || "asd";
+  const state = req.query.state || "";
 
   axios({
     method: "post",
