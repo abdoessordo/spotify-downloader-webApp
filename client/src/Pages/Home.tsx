@@ -87,18 +87,23 @@ export default function Home() {
     } else {
       setIsLogged(false);
     }
+  }, [userData]);
+
+  useEffect(() => {
+    const access_token = getAccessToken();
+
+    console.log(access_token);
 
     getUserProfile().then((res) => {
       setUserData(res);
-      getUserPlaylists(20, res.id).then((res) => {
-        console.log(res.items);
-        setUserPlaylists({
-          total: res.total,
-          items: res.items,
-        });
-      });
+    });
 
-      if (!userData) return;
+    getUserPlaylists().then((res) => {
+      console.log(res.items);
+      setUserPlaylists({
+        total: res.total,
+        items: res.items,
+      });
     });
 
     //   if (!access_token || !refresh_token || !expires_in) return;
@@ -131,6 +136,9 @@ export default function Home() {
     //   }
   }, []);
 
+  if (userData) {
+    console.log(userData);
+  }
   return (
     <div>
       {isLogged ? (
@@ -167,8 +175,8 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center h-screen">
           <h1 className="text-4xl font-bold">Welcome to Spotify Downloader</h1>
           <Link
-            // to="https://spotifyapi-2t9t.onrender.com/login"
-            to="http://localhost:8888/login"
+            to="https://spotifyapi-2t9t.onrender.com/login"
+            // to="http://localhost:8888/login"
             className="mt-5"
           >
             <Button>Login</Button>
