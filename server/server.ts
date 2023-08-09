@@ -5,7 +5,7 @@ import morgan from "morgan";
 import axios from "axios";
 
 // const clientBaseUrl: string = "http://localhost:5173";
-const clientBaseUrl: string = "http://localhost:5173";
+const clientBaseUrl: string = "https://spotify-downloader-web-app.vercel.app";
 
 // import Spotify from "./Spotify";
 

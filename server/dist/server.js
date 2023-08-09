@@ -9,7 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const axios_1 = __importDefault(require("axios"));
 // const clientBaseUrl: string = "http://localhost:5173";
-const clientBaseUrl = "http://localhost:5173";
+const clientBaseUrl = "https://spotify-downloader-web-app.vercel.app";
 // import Spotify from "./Spotify";
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
