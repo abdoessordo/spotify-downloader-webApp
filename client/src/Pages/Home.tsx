@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
+import { apiRoutes } from "@/utils/apiRoutes";
 
 interface SpotifyUser {
   display_name: string;
@@ -174,11 +175,7 @@ export default function Home() {
       ) : (
         <div className="flex flex-col items-center justify-center h-screen">
           <h1 className="text-4xl font-bold">Welcome to Spotify Downloader</h1>
-          <Link
-            to="https://spotifyapi-2t9t.onrender.com/login"
-            // to="http://localhost:8888/login"
-            className="mt-5"
-          >
+          <Link to={apiRoutes.login} className="mt-5">
             <Button>Login</Button>
           </Link>
         </div>
