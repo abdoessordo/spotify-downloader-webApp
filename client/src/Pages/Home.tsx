@@ -3,10 +3,10 @@ import {
   getAccessToken,
   getUserPlaylists,
   getUserProfile,
-  logout,
 } from "@/lib/spotify";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Header from "@/components/Header";
 
 interface SpotifyUser {
   display_name: string;
@@ -143,42 +143,12 @@ export default function Home() {
     <div>
       {isLogged ? (
         <>
-          <header
-            className=" 
-      px-[15vw] pb-10
-      h-[30vh] max-h-[400px] min-h-[340px] 
-      bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.82)] bg-gray-700 bg-grad
-      flex items-end justify-center
-      "
-          >
-            {/* Logout container */}
-            {/* sticky  */}
-            <div className="fixed top-0 right-0 p-4">
-              <Button className="rounded-full font-black" onClick={logout}>
-                Log Out
-              </Button>
-            </div>
-
-            <div className="flex flex-col items-center justify-center py-4 space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-              <div className="flex gap-8 items-end justify-center">
-                <img
-                  className=" w-48 h-48 rounded-full"
-                  src={userData?.images[1].url}
-                  alt="profile"
-                />
-                <div>
-                  <span className="text-sm text-gray-500 cursor-pointer hover:underline">
-                    Profile
-                  </span>
-                  <h1 className="mt-4 text-6xl">{userData?.display_name}</h1>
-                  <p className="mt-2 text-sm text-gray-500">
-                    {userPlaylists?.total} playlists ·{" "}
-                    {userData?.followers.total} followers
-                  </p>
-                </div>
-              </div>
-            </div>
-          </header>
+          <Header
+            profileImg={userData?.images[1].url || ""}
+            displayName={userData?.display_name || ""}
+            followers_total={userData?.followers.total || 0}
+            playlists_total={userPlaylists?.total || 0}
+          />
 
           {/* 
         Grid of playlists cards

@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GRANT_TYPE = exports.ARTISTS_URL = exports.PLAYLISTS_URL = exports.ACCESS_TOKEN_URL = exports.REDIRECT_URI = exports.CLIENT_SECRET = exports.CLIENT_ID = exports.PORT = void 0;
+exports.GRANT_TYPE = exports.ARTISTS_URL = exports.PLAYLISTS_URL = exports.ACCESS_TOKEN_URL = exports.REDIRECT_URI = exports.CLIENT_SECRET = exports.CLIENT_ID = exports.clientBaseUrl = exports.PORT = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 /**
@@ -27,6 +27,15 @@ dotenv_1.default.config();
 exports.PORT = process.env.PORT
     ? parseInt(process.env.PORT)
     : 3000;
+/**
+ * * CLIENT_BASE_URL
+ * Description: This constant represents the client base url used to redirect the user to the frontend.
+ * @type {string}
+ * @default "http://localhost:5173"
+ */
+exports.clientBaseUrl = process.env.NODE_ENV === "production"
+    ? "https://spotify-downloader-web-app.vercel.app"
+    : "http://localhost:5173";
 /**
  * * CLIENT_ID
  * Description: This constant represents the client id used to get the access token from the Spotify API.
@@ -46,7 +55,9 @@ exports.CLIENT_SECRET = process.env.CLIENT_SECRET || "";
  * Description: This constant represents the redirect uri used to get the access token from the Spotify API.
  * @type {string}
  */
-exports.REDIRECT_URI = process.env.REDIRECT_URI || "";
+exports.REDIRECT_URI = process.env.NODE_ENV === "production"
+    ? process.env.REDIRECT_URI_PRODUCTION || ""
+    : process.env.REDIRECT_URI_DEVELOPMENT || "";
 /**
  * * ACCESS_TOKEN_URL
  *

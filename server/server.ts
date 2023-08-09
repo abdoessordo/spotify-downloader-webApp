@@ -1,13 +1,10 @@
 import express, { Express } from "express";
-import { CLIENT_ID, CLIENT_SECRET, PORT, REDIRECT_URI } from "./constants";
+import { CLIENT_ID, CLIENT_SECRET, PORT, REDIRECT_URI, clientBaseUrl } from "./constants";
 import cors from "cors";
 import morgan from "morgan";
 import axios from "axios";
 
-// const clientBaseUrl: string = "http://localhost:5173";
-const clientBaseUrl: string = "https://spotify-downloader-web-app.vercel.app";
 
-// import Spotify from "./Spotify";
 
 const app: Express = express();
 

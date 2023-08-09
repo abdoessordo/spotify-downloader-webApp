@@ -25,6 +25,17 @@ export const PORT: number = process.env.PORT
   : 3000;
 
 /**
+ * * CLIENT_BASE_URL
+ * Description: This constant represents the client base url used to redirect the user to the frontend.
+ * @type {string}
+ * @default "http://localhost:5173"
+ */
+export const clientBaseUrl: string =
+  process.env.NODE_ENV === "production"
+    ? "https://spotify-downloader-web-app.vercel.app"
+    : "http://localhost:5173";
+
+/**
  * * CLIENT_ID
  * Description: This constant represents the client id used to get the access token from the Spotify API.
  * @type {string}
@@ -45,7 +56,10 @@ export const CLIENT_SECRET: string = process.env.CLIENT_SECRET || "";
  * Description: This constant represents the redirect uri used to get the access token from the Spotify API.
  * @type {string}
  */
-export const REDIRECT_URI: string = process.env.REDIRECT_URI || "";
+export const REDIRECT_URI: string =
+  process.env.NODE_ENV === "production"
+    ? process.env.REDIRECT_URI_PRODUCTION || ""
+    : process.env.REDIRECT_URI_DEVELOPMENT || "";
 
 /**
  * * ACCESS_TOKEN_URL

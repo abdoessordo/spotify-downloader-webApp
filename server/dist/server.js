@@ -8,9 +8,6 @@ const constants_1 = require("./constants");
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const axios_1 = __importDefault(require("axios"));
-// const clientBaseUrl: string = "http://localhost:5173";
-const clientBaseUrl = "https://spotify-downloader-web-app.vercel.app";
-// import Spotify from "./Spotify";
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, morgan_1.default)("dev"));
@@ -67,12 +64,12 @@ app.get("/callback", (req, res) => {
                 expires_in,
             });
             // TODO: Redirect to frontend
-            res.redirect(`${clientBaseUrl}/?${queryParams.toString()}`);
+            res.redirect(`${constants_1.clientBaseUrl}/?${queryParams.toString()}`);
             // TODO: pass tokens in query params
             // TODO: get user info
         }
         else {
-            res.redirect(`${clientBaseUrl}/?error=invalid_token`);
+            res.redirect(`${constants_1.clientBaseUrl}/?error=invalid_token`);
         }
     })
         .catch((err) => {
