@@ -98,7 +98,8 @@ export default function Home() {
       setUserData(res);
     });
 
-    getUserPlaylists().then((res) => {
+    if (!userData) return;
+    getUserPlaylists(20, userData.id).then((res) => {
       console.log(res.items);
       setUserPlaylists({
         total: res.total,

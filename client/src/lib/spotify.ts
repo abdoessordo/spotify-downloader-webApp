@@ -171,10 +171,10 @@ export const getUserProfile = async () => {
  * @returns {object} Playlist data
  * @param limit
  */
-export const getUserPlaylists = async (limit = 20) => {
+export const getUserPlaylists = async (limit = 20, userId: string) => {
   try {
     const { data } = await axios.get(
-      `https://api.spotify.com/v1/me/playlists?limit=${limit}`,
+      `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}`,
       {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`,
